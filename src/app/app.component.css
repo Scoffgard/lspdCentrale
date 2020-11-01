@@ -192,6 +192,23 @@ div#save button {
 }
 
 
+/* Bottom */
+.github {
+    position: absolute;
+    z-index: 15;
+    bottom: 25px;
+    right: 15px;
+}
+
+.github * {
+    display: inline-block;
+}
+.github img {
+    margin-right: 7px;
+    transform: translateY(25%);
+}
+
+
 
 
 @media all and (orientation: portrait) and (max-width: 1050px) {

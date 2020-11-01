@@ -24,7 +24,15 @@
     <div (click)="activePage = 'patrols'"><p *ngIf="activePage == 'patrols'; else nPatrols"><u>Patrouilles</u></p><ng-template #nPatrols><p>Patrouilles</p></ng-template></div>
     <div (click)="activePage = 'sReports'"><p *ngIf="activePage == 'sReports'; else nSReports"><u>Rapports de situation</u></p><ng-template #nSReports><p>Rapports de situation</p></ng-template></div>
     <div (click)="activePage = 'save'"><p *ngIf="activePage == 'save'; else nSave"><u>Sauvegarde</u></p><ng-template #nSave><p>Sauvegarde</p></ng-template></div>
+
+    <span class="github">
+        <img src="./assets/GitHub-Mark-Light-32px.png"/>
+        <h3><a target="_blank" href="https://github.com/Scoffgard/lspdCentrale" style="text-decoration: none; color: #eee">GitHub</a></h3>
+    </span>
 </span>
+
+
+
 
 <div class="helpPageTrigger" (click)="activePage = activePage.substring(4)" *ngIf="activePage.substring(0, 4) == 'help'; else nHelp">
     <u>Aide</u>&nbsp;<img src="./assets/help_outline-24px.svg" />
@@ -151,4 +159,9 @@
             </div>
         </div>
     </div>
+
+    <span class="github fullsize">
+        <a target="_blank" href="https://github.com/Scoffgard/lspdCentrale" style="text-decoration: none; color: #eee"><img src="./assets/GitHub-Mark-Light-32px.png" /></a>
+        <h3><a target="_blank" href="https://github.com/Scoffgard/lspdCentrale" style="text-decoration: none; color: #eee">GitHub</a></h3>
+    </span>
 </span>
