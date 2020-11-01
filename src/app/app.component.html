@@ -1,0 +1,154 @@
+<header>
+    <h1 class="fullsize">Générateur de centrale</h1>
+    <h2 class="mobile">Générateur de centrale</h2>
+    <div>
+        <span class="fullsize">
+            <div (click)="activePage = 'infos'"><p *ngIf="activePage == 'infos'; else nInfos"><u>Informations</u></p><ng-template #nInfos><p>Informations</p></ng-template></div>
+            <div (click)="activePage = 'patrols'"><p *ngIf="activePage == 'patrols'; else nPatrols"><u>Patrouilles</u></p><ng-template #nPatrols><p>Patrouilles</p></ng-template></div>
+            <div (click)="activePage = 'sReports'"><p *ngIf="activePage == 'sReports'; else nSReports"><u>Rapports de situation</u></p><ng-template #nSReports><p>Rapports de situation</p></ng-template></div>
+            <div (click)="activePage = 'save'"><p *ngIf="activePage == 'save'; else nSave"><u>Sauvegarde</u></p><ng-template #nSave><p>Sauvegarde</p></ng-template></div>
+        </span>
+        <span class="mobile">
+            <img src="./assets/menu-24px.svg" (click)="menuOpen = true"/>
+        </span>
+    </div>
+</header>
+
+<span id="mobileMenu" class="menu" *ngIf="menuOpen" (click)="menuOpen = false"></span>
+<span class="menuContent" *ngIf="menuOpen">
+    <span class="toolbar">
+        <img src="./assets/close-24px.svg" (click)="menuOpen = false"/>
+        <h2>Menu</h2>
+    </span>
+    <div (click)="activePage = 'infos'"><p *ngIf="activePage == 'infos'; else nInfos"><u>Informations</u></p><ng-template #nInfos><p>Informations</p></ng-template></div>
+    <div (click)="activePage = 'patrols'"><p *ngIf="activePage == 'patrols'; else nPatrols"><u>Patrouilles</u></p><ng-template #nPatrols><p>Patrouilles</p></ng-template></div>
+    <div (click)="activePage = 'sReports'"><p *ngIf="activePage == 'sReports'; else nSReports"><u>Rapports de situation</u></p><ng-template #nSReports><p>Rapports de situation</p></ng-template></div>
+    <div (click)="activePage = 'save'"><p *ngIf="activePage == 'save'; else nSave"><u>Sauvegarde</u></p><ng-template #nSave><p>Sauvegarde</p></ng-template></div>
+</span>
+
+<div class="helpPageTrigger" (click)="activePage = activePage.substring(4)" *ngIf="activePage.substring(0, 4) == 'help'; else nHelp">
+    <u>Aide</u>&nbsp;<img src="./assets/help_outline-24px.svg" />
+</div>
+<ng-template #nHelp>
+    <div class="helpPageTrigger" (click)="activePage = 'help' + activePage">
+        Aide <img src="./assets/help_outline-24px.svg" />
+    </div>
+</ng-template>
+
+
+<span [class]="menuOpen == true ? 'hideOverflow' : null">
+    <div id="helpInfos" class="content help" *ngIf="activePage == 'helpinfos'">
+        <img src="./assets/helpInfos.png"/><br /><br />
+        <h2>*1</h2><p>Contient l'heure de début de la centrale qui correspond à l'heure d'ouverture de la page. Pensez donc à recharger la page à chaque nouvelle centrale !</p><br />
+        <h2>*2</h2><p>Contient les informations sur les différents membres proposés. D'abord le grade, ensuite l'ID (ex: 1924) et le Prénom et NOM (ex: Antoine CUMSI).</p><br />
+        <h2>*3</h2><p>Contient le résultat final du rapport de centrale. C'est ce texte que vous devez copier et coller sur le panel à la fin de votre rapport. Le texte entre parenthèses ne doit pas être enlevé, sous peine de bannissement de l'outil.</p>
+    </div>
+
+    <div id="helpPatrols" class="content help" *ngIf="activePage == 'helppatrols'">
+        <img src="./assets/helpPatrols.png"/><br /><br />
+        <h2>*1</h2><p>Permet de créer une nouvelle patrouille. Le menu déroulant de gauche permet de choisir le type. Et le bouton de valider la création.</p><br />
+        <h2>*2</h2><p>Ces boutons sont propres à chaque patrouille. Le bouton 'Dissoudre' permet de dissoudre la patrouille. Se proposera alors une zone texte où entrer la raison de la dissolution. Le bouton 'Supprimer' permet de supprimer totalement la patrouille en cas de click par erreur. Ce bouton n'apparaît que sur la dernière patrouille du type. Alors, attention !</p><br />
+        <h2>*3</h2><p>Le sélecteur permet de choisir un secteur pour la patrouille. Il n'apparaît toutefois que sur les patrouilles applicables. Le 'plus' permet d'ajouter un secteur pour assigner de multiples secteurs à la patrouille.</p><br />
+        <h2>*4</h2><p>Ce bouton permet tout simplement d'ajouter un membre à la patrouille.</p><br />
+        <h2>*5, case 1</h2><p>Contient les informations sur le membre. D'abord le grade, ensuite l'ID (ex: 1924) et le Prénom et NOM (ex: Antoine CUMSI). Les deux boutons fonctionnent exactement comme dans *2, mis a part que 'Dissoudre' est remplacé par 'Départ'.</p><br />
+        <h2>*5, case 2</h2><p>Après l'appui sur 'Départ', cette case apparaît sous le membre sélectionné. Elle permet de définir un départ et une raison pour.</p>
+    </div>
+
+    <div id="helpSReports" class="content help" *ngIf="activePage == 'helpsReports'">
+        <img src="./assets/helpSReports.png"/><br /><br />
+        <h2>*1</h2><p>Ce bouton permet de créer un nouveau rapport de situation. Il vous est aussi fourni l'heure suggérée pour le prochain rapport (toutes les 15 minutes).</p><br />
+        <h2>*2</h2><p>Pour chaque rapport apparaît une liste avec toutes les patrouilles actives à l'heure du rapport. La zone de texte permet de définir le statut de la patrouille (ex: R.A.S.).</p>
+    </div>
+
+    <div id="helpSave" class="content help" *ngIf="activePage == 'helpsave'">
+        <img src="./assets/helpSave.png"/><br /><br />
+        <h2>*1</h2><p>Cette zone de texte contient les données de sauvegarde de la centrale en cours. A copier souvent en cas malencontreux de 'F5' ;) . Vous pouvez aussi coller d'autres données dans cette case, après rechargement de la page par exemple.</p><br />
+        <h2>*2</h2><p>Ces deux boutons permettent le traitement des données. 'Charger' permet de mettre la zone de texte égale aux données de sauvegarde actuel (il faut le faire même après avoir changé d'onglet). 'Envoyer' permet de traiter les données que vous auriez pu coller dans la zone texte et de restaurer la sauvegarde.</p>
+    </div>
+
+    <div id="infos" class="content" *ngIf="activePage == 'infos'">
+        <h1>Centrale de {{infos.startedAt}}</h1>
+        <br />
+        <div *ngFor="let agent of infos.agents">
+            <h2>{{agent.roleName}} :</h2>
+            <br />
+            <select (change)="agent.rank = $event.target.value" [value]="agent.rank"><option *ngFor="let rank of ranks">{{rank}}</option></select>&nbsp;<input type="text" placeholder="ID" (change)="agent.id = $event.target.value" [value]="agent.id" style="width: 2.6em;"/> | <input type="text" [value]="agent.name" placeholder="Prénom NOM" (change)="agent.name = $event.target.value"/>
+            <br /><br />
+        </div>
+        <h2>Rapport : </h2><br />
+        <div class="report">
+            <p>
+                📋 RAPPORT DE CENTRALE 📋 ( Fait avec l'outil de centrale d'Antoine CUMSI : https://www.teo-m.tk/centrale )<br /> 
+                👮‍ CENTRALE : {{(infos.agents[1].rank).toUpperCase()}} {{infos.agents[1].id}} | {{infos.agents[1].name}}<br />
+                🚩 Début à {{infos.startedAt}}<br />
+                ❎ Fin à <i>A REMPLIR</i> - 👄 Raison : <i>A REMPLIR</i><br /><br />
+    
+                👮‍ CHEF DU DISPATCH : {{(infos.agents[0].rank).toUpperCase()}} {{infos.agents[0].id}} | {{infos.agents[0].name}}<br />
+                👮‍ ACCUEIL : {{(infos.agents[2].rank).toUpperCase()}} {{infos.agents[2].id}} | {{infos.agents[2].name}}<br /><br />
+    
+                🚨 PATROUILLES 🚨<br /><br />
+                <span *ngFor="let pType of patrolTypes; let i = index">
+                    <p *ngFor="let patrol of patrols[pType]">
+                        {{patrolTypesEmoji[i]}} {{patrol.name}} | 🚩 Créée à {{patrol.startedAt}} <span *ngIf="!patrol.on">| ❎ Dissoute à {{patrol.end.hour}} - 👄 Raison : {{patrol.end.reason}}</span><br />
+                        🗺️ Secteur <span *ngFor="let sector of patrol.sectors">{{sector.toUpperCase()}} </span><br />
+                        <span *ngFor="let member of patrol.members">
+                            👮 {{(member.rank).toUpperCase()}} {{member.id}} | {{member.name}}<span *ngIf="compareHour(patrol.startedAt, member.addedAt, 2)"> | ➕ Ajout à {{member.addedAt}}</span><span *ngIf="member.leave.reason != undefined"> | ❎ Départ à {{member.leave.hour}} - 👄 Raison : {{member.leave.reason}}</span><br />
+                        </span><br />
+                    </p>
+                </span>
+    
+                📝 RAPPORTS DE SITUATION 📝<br /><br />
+                <span *ngFor="let report of sReports">
+                    🕐 {{report.hour}} :<br />
+                    <span *ngFor="let patrol of report.patrols">
+                        {{patrolTypesEmoji[patrol.typeNb]}} {{patrol.name}} : {{patrol.value}}<br />
+                    </span><br />
+                </span>
+    
+            </p>
+        </div>
+        <br />
+    </div>
+    
+    <div id="patrols" class="content patrols" *ngIf="activePage == 'patrols'">
+        <select (change)="activePatrolType = $event.target.value"><option *ngFor="let pType of patrolTypes">{{pType}}</option></select>&nbsp;<button (click)="newPatrol()">Nouvelle Patrouille</button>
+        <br /><br />
+        <div *ngFor="let pType of patrolTypes">
+            <div *ngFor="let patrol of patrols[pType]; let patrolI = index">
+                <h2 style="margin-bottom: 10px;">{{patrol.name}}</h2>
+                <button (click)="stopPatrol(pType, patrol)">Dissoudre</button>&nbsp;
+                <button *ngIf="patrols[pType][patrolI+1] == undefined" (click)="removeLastPatrol(pType)">Supprimer</button>
+                <input *ngIf="!patrol.on" type="text" (change)="patrol.end.reason = $event.target.value" [value]="patrol.end.reason" placeholder="Raison"/>
+                <div id="sectors" *ngIf="pType != 'PN' && pType != 'PB' && pType != 'PH'" style="margin-top: 10px;">&nbsp;Secteur : <select (change)="patrol.sectors[i] = $event.target.value" *ngFor="let sector of patrol.nbOfSectors; let i = index" style="margin-right: 0.5em;"><option *ngFor="let sectorOption of sectors" [value]="sectorOption" [selected]="sectorOption == patrol.sectors[i]">{{sectorOption}}</option></select><img src="./assets/add-24px.svg" (click)="addSector(pType, patrol)" /></div>
+                <br />
+                <button (click)="addMember(pType, patrol)">Nouveau Membre</button>
+                <br /><br />
+                <div *ngFor="let member of patrol.members; let memberI = index">
+                    <div><select (change)="member.rank = $event.target.value" [value]="member.rank"><option *ngFor="let rank of ranks" [value]="rank" [selected]="rank == member.rank">{{rank}}</option></select>&nbsp;<input type="text" placeholder="ID" [value]="member.id" (change)="member.id = $event.target.value" style="width: 2.6em;"/> | <input type="text" (change)="member.name = $event.target.value" [value]="member.name" placeholder="Prénom NOM"/>&nbsp;<button *ngIf="patrol.members[memberI+1] == undefined" (click)="removeLastMember(pType, patrol)">Supprimer</button>&nbsp;<button (click)="removeMember(pType, patrol, member)">Départ</button></div>
+                    <div style="margin-top: 5px;" *ngIf="member.leave.reason != undefined">&nbsp;Départ à {{member.leave.hour}}, car : <input type="text" [value]="member.leave.reason" placeholder="Raison" (change)="member.leave.reason = $event.target.value" /></div>
+                    <br />
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+    
+    <div id="save" class="content" *ngIf="activePage == 'save'">
+        <h2>Données de sauvegarde</h2><br /><br />
+        <textarea rows="15" cols="40" [value]="save" (change)="save = $event.target.value"></textarea><br />
+        <button (click)="loadSave()">Charger</button><br />
+        <button (click)="submitSave()">Envoyer</button>
+    </div>
+    
+    <div id="sReports" class="content" *ngIf="activePage == 'sReports'">
+        <button (click)="newSReport()" style="margin-bottom: 5px;">Nouveau Rapport</button><br />
+        &nbsp;Heure suggérée du prochain rapport : {{getNextReportHour()}}
+        <div *ngFor="let report of sReports">
+            <br />
+            <h2>{{report.hour}} :</h2>
+            <div *ngFor="let patrol of report.patrols; let i = index">
+                {{patrol.name}} : <input type="text" (change)="report.patrols[i].value = $event.target.value" [value]="patrol.value" placeholder="Statut" />
+            </div>
+        </div>
+    </div>
+</span>
