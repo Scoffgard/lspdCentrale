@@ -146,6 +146,10 @@
         <textarea rows="15" cols="40" [value]="save" (change)="save = $event.target.value"></textarea><br />
         <button (click)="loadSave()">Charger</button><br />
         <button (click)="submitSave()">Envoyer</button>
+        <span class="github fullsize">
+            <a target="_blank" href="https://github.com/Scoffgard/lspdCentrale" style="text-decoration: none; color: #eee"><img src="./assets/GitHub-Mark-Light-32px.png" /></a>
+            <h3><a target="_blank" href="https://github.com/Scoffgard/lspdCentrale" style="text-decoration: none; color: #eee">GitHub</a></h3>
+        </span>
     </div>
     
     <div id="sReports" class="content" *ngIf="activePage == 'sReports'">
@@ -160,8 +164,5 @@
         </div>
     </div>
 
-    <span class="github fullsize">
-        <a target="_blank" href="https://github.com/Scoffgard/lspdCentrale" style="text-decoration: none; color: #eee"><img src="./assets/GitHub-Mark-Light-32px.png" /></a>
-        <h3><a target="_blank" href="https://github.com/Scoffgard/lspdCentrale" style="text-decoration: none; color: #eee">GitHub</a></h3>
-    </span>
+    
 </span>
