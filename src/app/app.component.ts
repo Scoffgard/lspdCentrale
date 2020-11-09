@@ -141,6 +141,10 @@ export class AppComponent {
         }
         this.sReports.push(report);
     }
+
+    removeLastSReport() {
+        this.sReports.pop();
+    }
     
 
     /**
