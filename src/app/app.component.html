@@ -155,13 +155,17 @@
     <div id="sReports" class="content" *ngIf="activePage == 'sReports'">
         <button (click)="newSReport()" style="margin-bottom: 5px;">Nouveau Rapport</button><br />
         &nbsp;Heure suggérée du prochain rapport : {{getNextReportHour()}}
-        <div *ngFor="let report of sReports">
+        <div *ngFor="let report of sReports; let i = index">
             <br />
-            <h2>{{report.hour}} :</h2>
+            <h2>{{report.hour}} :</h2><button *ngIf="sReports[i+1] == undefined" (click)="removeLastSReport()">Suprimmer</button>
             <div *ngFor="let patrol of report.patrols; let i = index">
                 {{patrol.name}} : <input type="text" (change)="report.patrols[i].value = $event.target.value" [value]="patrol.value" placeholder="Statut" />
             </div>
         </div>
+    </div>
+
+    <div id="map" class="map" *ngIf="activePage == 'map'">
+        <img src="./assets/districs.png"/>
     </div>
 
     
