@@ -75,12 +75,12 @@
     </div>
 
     <div id="infos" class="content" *ngIf="activePage == 'infos'">
-        <h1>Centrale de {{infos.startedAt}}</h1>
+        <h1>Centrale de {{infos.startedAt}}&nbsp;<button style="transform: translateY(-15%);" (click)="endCentral()">Fin de centrale</button>&nbsp;<input style="transform: translateY(-15%);" type="text" *ngIf="infos.ended == true" (change)="infos.end.reason = $event.target.value"/></h1>
         <br />
         <div *ngFor="let agent of infos.agents">
             <h2>{{agent.roleName}} :</h2>
             <br />
-            <select (change)="agent.rank = $event.target.value" [value]="agent.rank"><option *ngFor="let rank of ranks">{{rank}}</option></select>&nbsp;<input type="text" placeholder="ID" (change)="agent.id = $event.target.value" [value]="agent.id" style="width: 2.6em;"/> | <input type="text" [value]="agent.name" placeholder="Prénom NOM" (change)="agent.name = $event.target.value"/>
+            <select (change)="agent.rank = $event.target.value" [value]="agent.rank"><option *ngFor="let rank of ranks" [value]="rank" [selected]="rank == agent.rank">{{rank}}</option></select>&nbsp;<input type="text" placeholder="ID" (change)="agent.id = $event.target.value" [value]="agent.id" style="width: 2.6em;"/> | <input type="text" [value]="agent.name" placeholder="Prénom NOM" (change)="agent.name = $event.target.value"/>
             <br /><br />
         </div>
         <h2>Rapport : </h2><br />
@@ -89,7 +89,7 @@
                 📋 RAPPORT DE CENTRALE 📋 ( Fait avec l'outil de centrale d'Antoine CUMSI : https://centrale.scoffgard.ga )<br /> 
                 👮‍ CENTRALE : {{(infos.agents[1].rank).toUpperCase()}} {{infos.agents[1].id}} | {{infos.agents[1].name}}<br />
                 🚩 Début à {{infos.startedAt}}<br />
-                ❎ Fin à <i>A REMPLIR</i> - 👄 Raison : <i>A REMPLIR</i><br /><br />
+                ❎ Fin à {{infos.end.hour}} - 👄 Raison : {{infos.end.reason}}<br /><br />
     
                 👮‍ CHEF DU DISPATCH : {{(infos.agents[0].rank).toUpperCase()}} {{infos.agents[0].id}} | {{infos.agents[0].name}}<br />
                 👮‍ ACCUEIL : {{(infos.agents[2].rank).toUpperCase()}} {{infos.agents[2].id}} | {{infos.agents[2].name}}<br /><br />

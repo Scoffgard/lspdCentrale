@@ -11,7 +11,7 @@ export class AppComponent {
 
     patrolTypes : Array<string> = ['P', 'PH', 'PR', 'PM', 'PB', 'PN', 'PP'];
     patrolTypesEmoji : Array<string> = ['🚓', '🚁', '🏎️', '🏍️', '🕵️', '⛵', '🚶']
-    ranks : Array<string> = ['Cadet', 'Officier', 'Officier Supérieur', 'Sergent I', 'Sergent II', 'Sergent III', 'Major', 'Lieutenant I', 'Lieutenant II', 'Lieutenant III', 'Capitaine', 'Commissaire-Adjoint', 'Commissaire'];
+    ranks : Array<string> = ['Cadet', 'Officier I', 'Officier II', 'Officier III', 'Officier Supérieur', 'Sergent I', 'Sergent II', 'Sergent III', 'Major', 'Lieutenant I', 'Lieutenant II', 'Lieutenant III', 'Capitaine I', 'Capitaine II', 'Capitaine III', 'Commissaire-Adjoint', 'Commissaire'];
     sectors : Array<string> = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Nord', 'Libre'];
 
     infos : Object = {
@@ -20,7 +20,12 @@ export class AppComponent {
             {roleName : 'Chef du dispatch', rank : this.ranks[0], id : null, name : ''},
             {roleName : 'Agent de centrale', rank : this.ranks[0], id : null, name : ''},
             {roleName : 'Agent d\'accueil', rank : this.ranks[0], id : null, name : ''}
-        ]
+        ],
+        ended: false,
+        end: {
+            hour: 'A définir',
+            reason: 'A définir'
+        }
     }
     
     activePatrolType : string = this.patrolTypes[0];
@@ -230,5 +235,10 @@ export class AppComponent {
         if (hour1Obj['hour'] > hour2Obj['hour']) return false;
         if (hour2Obj['minutes'] - hour1Obj['minutes'] <= timeGap) return false;
         else return true;
+    }
+
+    endCentral() {
+        this.infos['ended'] = true;
+        this.infos['end']['hour'] = this.getHour();
     }
 }
